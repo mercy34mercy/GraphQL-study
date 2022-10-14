@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"graphql/graph"
 	"graphql/graph/generated"
+	"graphql/infrastructure"
 	"log"
 	"net/http"
 	"os"
@@ -14,6 +16,13 @@ import (
 const defaultPort = "8080"
 
 func main() {
+	v2_db := infrastructure.Init()
+	db,err := v2_db.DB() 
+	if err != nil {
+		fmt.Println("[INFO] db init err")	
+	}
+	defer db.Close()
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = defaultPort
