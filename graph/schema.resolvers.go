@@ -5,24 +5,31 @@ package graph
 
 import (
 	"context"
-	"fmt"
+	todoCtrl "graphql/adapter/controller/todo"
+	userCtrl "graphql/adapter/controller/user"
 	"graphql/graph/generated"
 	"graphql/graph/model"
 )
 
 // CreateUser is the resolver for the createUser field.
 func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (*model.User, error) {
-	panic(fmt.Errorf("not implemented: CreateUser - createUser"))
+	userCtrl := userCtrl.UserCreateController{}
+	User, err := userCtrl.Create(ctx, &input)
+	return User, err
 }
 
 // CreateTodo is the resolver for the createTodo field.
 func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: CreateTodo - createTodo"))
+	todoCtrl := todoCtrl.TodoCreateController{}
+	Todo, err := todoCtrl.Create(ctx, &input)
+	return Todo, err
 }
 
 // Todos is the resolver for the todos field.
 func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: Todos - todos"))
+	todoCtrl := todoCtrl.TodoController{}
+	Todo, err := todoCtrl.Show(ctx)
+	return Todo, err
 }
 
 // Mutation returns generated.MutationResolver implementation.

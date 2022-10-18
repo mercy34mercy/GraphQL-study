@@ -6,5 +6,5 @@ type Todo struct {
 	gorm.Model
 	Text string
 	Done bool
-	Userid string `gorm:"type:varchar(255)"`
+	UserID uint
 }

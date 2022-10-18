@@ -22,4 +22,7 @@ func NewGetAllTodoUseCaseImpl(todorepository repository.TodoRepository) getAllTo
 
 func (impl getAllTodoUseCaseImpl) Get()([]*model.Todo,error){
 	//ここに処理を書く
+	todo,err := impl.TodoRepository.FindTodo()
+
+	return todo,err
 }

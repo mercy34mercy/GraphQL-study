@@ -34,12 +34,9 @@ func Init() *gorm.DB {
 func GetDB() *gorm.DB {
 	return db
 }
- 
 
 func autoMigrate() {
 	db.
-		AutoMigrate(&dto.Todo{})
-	db.
-		AutoMigrate(&dto.User{})
+		AutoMigrate(&dto.User{},&dto.Todo{})
 }
 

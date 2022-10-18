@@ -24,4 +24,6 @@ func NewCreateUserUseCaseImpl (input *model.NewUser, userrepository repository.U
 
 func (impl CreateUserUseCaseImpl) Create() (*model.User,error){
 	//ここを実装
+	user,err := impl.UserRepository.CreateUser(*impl.NewUser)
+	return user,err
 }

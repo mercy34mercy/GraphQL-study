@@ -23,5 +23,7 @@ func NewCreateTodoUseCaseImpl(input *model.NewTodo, todorepository repository.To
 
 func(impl CreateTodoUseCaseImpl) Create() (*model.Todo,error){
 	//ここに処理を記述
+	todo,err := impl.TodoRepository.CreateTodo(*impl.NewTodo)
+	return todo,err
 
 }
